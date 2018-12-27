@@ -1,0 +1,23 @@
+父接受子传递的内容：<input id="txt10" type="text" name="txt10"><br />
+<button onclick="setPermission()">点击</button>
+<script>
+    function setPermission() {
+        var url = "child.html";
+//居中问题
+        var dialogLeftValue = screen.width / 2 - 200 + "px";
+        var returnValue;
+//判断是否兼容Chrome浏览器
+        if (navigator.userAgent.indexOf("Chrome") > 0) {
+            var width = 600;
+            var height = 350;
+            var top = (window.screen.height - 30 - height) / 2;
+            var left = (window.screen.width - 30 - width) / 2;
+            window.open(url, self, "width=" + width + ",height=" + height + ",top=" + top + ",left=" + left);
+        } else {
+            returnValue = window.showModalDialog(url, "", "dialogHeight:350px;dialogWidth:600px;status:0;dialogTop:100px;dialogLeft:" + dialogLeftValue);
+
+        }
+    }
+</script>
+
+

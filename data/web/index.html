@@ -1,0 +1,264 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>登录</title>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script>
+    var mail1;
+    var pass1;
+    function get() {
+        mail1=document.getElementById('mail').value;
+        pass1=document.getElementById('pass').value;
+        console.log(mail1);
+        var json={
+            "email":mail1,
+            "password":pass1
+        }
+        $.ajax({
+            type: "post",
+            url: 'user_login_check.php',
+            async: false, // 使用同步方式
+            data: json,
+            dataType:"text",
+            success: function(data) {
+                if (data == "登入成功") {
+                     window.location.href='examples/dashboard1.html';
+                }else {
+                    alert(data);
+                }
+            } // 注意不要在此行增加逗号
+        });
+    }
+    function find() {
+        var findname=document.getElementById('findname').value;
+        var yanzheng=document.getElementById('yanzheng').value;
+        if (yanzheng.length!=4||findname!="1535941400@qq.com") {
+            alert("验证码错误或账户不存在！");
+        }else {
+            findout();
+        }
+    }
+    function send() {
+        var phone1=document.getElementById('phone1').value;
+
+        if (phone1.length!=11){
+            console.log(phone1);
+            alert("请填写正确的手机号!");
+        }else {
+            alert("验证码已发送!");
+        }
+    }
+    function findout() {
+        alert("您的密码已重置为手机号，请您继续登录！")
+    }
+</script>
+<style>
+.body{
+            background:#408AB4;
+			/*background: #ff4931;*/
+			transition: all .5s;
+            padding:1px;
+		}
+		.veen{
+			width: 70%;
+			margin: 100px auto;
+			background: rgba(255,255,255,.5);
+			min-height: 400px;
+			display:table;
+			position: relative;
+			box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+		}
+		.veen > div {
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+			color: #fff;
+		}
+		.veen button{
+			background: transparent;
+		  /* background-image: linear-gradient(90deg, #e0b722, #ff4931); */
+			display: inline-block;
+			padding: 10px 30px;
+			border: 3px solid #fff;
+			border-radius: 50px;
+			background-clip: padding-box;
+			position: relative;
+			color: #FFF;
+			/* box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28); */
+			transition: all .25s;
+		}
+		.veen button.dark{
+          border-color: #408AB4;
+          background:#408AB4;
+          /*border-color: #ff4931;*/
+			/*background: #ff4931;*/
+		}
+		.veen .move button.dark{
+          border-color: #65C6C4 ;
+          background: #65C6C4;
+			/*border-color: #e0b722;*/
+			/*background: #e0b722;*/
+		}
+		.veen .splits p{
+			font-size: 18px;
+		}
+		.veen button:active{
+			box-shadow: none;			
+		}
+		.veen button:focus{
+			outline: none;			
+		}
+		.veen > .wrapper {
+			position: absolute;
+			width: 40%;
+			height: 120%;
+			top: -10%;
+			left: 5%;
+			background: #fff;
+			box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+			transition: all .5s;
+			color: #303030;
+			overflow: hidden;
+		}
+		.veen .wrapper > div{
+			padding: 15px 30px 30px;
+			width: 100%;
+			transition: all .5s;
+			background: #fff;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%; 
+		}
+		.veen .wrapper #login{
+			padding-top: 20%;
+		}
+		.veen .wrapper #register{
+			left: 100%;
+		}
+		.veen .wrapper.move #register{
+			left: 0%;
+		}
+		.veen .wrapper.move #login{
+			left: -100%;
+		}
+		.veen .wrapper > div> div {
+			position: relative;
+			margin-bottom: 15px;
+		}
+		.veen .wrapper label{
+			position: absolute;
+			top: -7px;
+			font-size: 12px;
+			white-space: nowrap;
+			background: #fff;
+			text-align: left;
+			left: 15px;
+			padding: 0 5px;
+			color: #999;
+			pointer-events: none;
+		}
+		.veen .wrapper h3{
+			margin-bottom: 25px;
+		}
+		.veen .wrapper input{
+			height: 40px;
+			padding: 5px 15px;
+			width: 100%;
+			border: solid 1px #999;
+		}
+		.veen .wrapper input:focus{
+			outline: none;
+          border-color:#408AB4;
+			/*border-color: #ff4931;*/
+		}
+		.veen > .wrapper.move{
+			left: 45%;
+		}
+		.veen > .wrapper.move input:focus{
+          border-color:#65C6C4;
+			/*border-color: #e0b722;*/
+		}</style>
+</head>
+<body>
+
+<script src="http://www.jq22.com/jquery/jquery-ui-1.11.0.js"></script>
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+<div class="body">
+    <h2 style="margin-left: 50px;color: #FFFFFF">企 业 能 源 综 合 管 理 平 台</h2>
+  <div class="veen">
+    <div class="login-btn splits">
+      <p>立即查看能耗情况?</p>
+      <button>登录</button>
+    </div>
+    <div class="rgstr-btn splits">
+      <p>忘记密码?</p>
+      <button>找回密码</button>
+    </div>
+    <div class="wrapper">
+      <!--<form action="user_login_check.php" method="post" id="form_login" onsubmit="send_form('form_login');return false;">-->
+      <div id="login">
+
+        <h3>登录</h3>
+        <div class="mail">
+          <input type="mail" name="mail" id="mail" >
+          <label>邮箱或用户名</label>
+        </div>
+        <div class="passwd">
+          <input type="password" name="" id="pass">
+          <label>密码</label>
+        </div>
+        <div class="submit">
+          <button onclick="get()" class="dark">企业管理员入口</button>
+        </div>
+        <div class="submit">
+          <button  class="dark" onclick="{location.href='https://www.joincloud.link/login '}">系统管理员入口</button>
+
+        </div>
+      </div>
+      <!--</form>-->
+      <div id="register">
+        <h3>找回密码</h3>
+        <div class="name">
+          <input type="text" name="">
+          <label>姓名</label>
+        </div>
+        <div class="mail">
+          <input type="mail" name="" id="findname">
+          <label>账号</label>
+        </div>
+          <div class="uid">
+            <input type="text" name="" id="phone1">
+              <label>手机号</label>
+          </div>
+          <div class="uid">
+            <button style="color: #6c757d" onclick="send()">获取验证码</button>
+          </div>
+        <div class="passwd">
+          <input type="password" name="" id="yanzheng">
+          <label>验证码</label>
+        </div>
+        <div class="submit">
+          <button class="dark" onclick="find()">找回密码</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/js/core/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+			$(".veen .rgstr-btn button").click(function(){
+				$('.veen .wrapper').addClass('move');
+				$('.body').css('background','#65C6C4');
+			});
+			$(".veen .login-btn button").click(function(){
+				$('.veen .wrapper').removeClass('move');
+				$('.body').css('background','#408AB4');
+			});
+		});
+
+</script>
+</body>
+</html>

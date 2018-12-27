@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+		<meta name="renderer" content="webkit">
+		<title>jQuery水平方向菜单导航条 滑块伴随鼠标移动(原创)</title>
+		<style type="text/css">
+			/*通用样式*/
+			*{margin: 0;padding: 0;box-sizing: border-box;}
+			body {background-color: #eee;}
+			.clearFix:after{content:"";visibility:hidden;height:0;display:block;clear:both;}
+			.clearFix{display:inline-block;zoom:1;}
+			.clearFix{display:block}
+			
+			li{list-style: none;}
+			
+			.con {
+				width: 1000px;
+				margin: 30px auto;
+				background-color: #fff;
+				padding: 20px 0;
+			}
+			
+			.fieldset-w {
+				width: 80%;
+				margin: 0 auto;
+			}
+			
+			.fieldset-con {
+				margin: 0 auto;
+			    padding: 10px 0;
+				border-width: 1px 0 0;
+			}
+			
+			.fieldset-con legend {
+				margin: 0 auto;
+				padding: 0 10px;
+			}
+			/*本例样式*/
+			.nav-wrap {
+				width: 100%;
+				height: 62px;
+			}
+			
+			.mouse-follow-nav {
+				display: table;
+				margin: 0 auto;
+				height: 100%;
+				position: relative;
+			}
+			.nav-list-w {position: relative;}
+			.nav-shoe-wrap .nav-list {
+				height: 62px;
+				position: relative;
+				margin: 0 auto;
+				background-color: #607D8B;
+				z-index: 99;
+				padding-right: 10px;
+			}
+			.mouse-follow-nav .nav-list li {
+				float: left;
+				width: auto;
+				height: 62px;
+				text-align: center;
+				position: relative;
+				margin-left: 10px;
+				z-index: 99;
+			}
+			
+			.mouse-follow-nav .nav-list li a {
+				float: left;
+				padding: 0 10px;
+				line-height: 62px;
+				font-size: 20px;
+				font-family: "Microsoft YaHei";
+				color: #fff;
+				text-decoration: none;
+				position: relative;
+				z-index: 999;
+			}
+			/*滑块*/
+			.mouse-follow-nav .sliding-block {background-color: #409EFF;}
+			.mouse-follow-nav .sliding-block-1 {background-color: #ff9800;}
+			#nav_0  .sliding-block {background-color: #ff9800;}
+			#nav_3  .sliding-block {
+				-webkit-border-radius:50%;
+				   -moz-border-radius:50%;
+				    -ms-border-radius:50%;
+				     -o-border-radius:50%;
+				        border-radius:50%;
+			}
+			#nav_4 .sliding-block {
+				-webkit-transform:skew(-20deg);
+				   -moz-transform:skew(-20deg);
+				    -ms-transform:skew(-20deg);
+				     -o-transform:skew(-20deg);
+				        transform:skew(-20deg);
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="con">
+			<!--<br/>-->
+			<!--<h3 style="text-align:center;">jQuery导航条滑块伴随鼠标移动特效</h3>-->
+			<!--<br/>-->
+			<!--<br/>-->
+
+		   <!--<div class="fieldset-w">-->
+				<!--<fieldset class="fieldset-con">-->
+					<!--<legend>默认</legend>-->
+				<!--</fieldset>-->
+			<!--</div>-->
+			<div class="nav-shoe-wrap">
+				<div class="nav-wrap">
+					<div class="mouse-follow-nav">
+						<div id="nav_0" class="nav-list-w">
+							<ul class="nav-list clearFix">
+								<li class="nav-item">
+									<a href="javascript:;">哈哈</a>
+								</li>
+								<li class="nav-item">
+									<a href="javascript:;">哈哈哈</a>
+								</li>
+								<li class="nav-item">
+									<a href="javascript:;">嘿嘿嘿嘿</a>
+								</li>
+								<li class="nav-item">
+									<a href="javascript:;">啦啦啦啦</a>
+								</li>
+								<li class="nav-item">
+									<a href="javascript:;">吼吼吼</a>
+								</li>
+								<li class="nav-item">
+									<a href="javascript:;">呵呵</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<br />-->
+			<!--<br />-->
+			<!--<br />-->
+			<!--<div class="fieldset-w">-->
+				<!--<fieldset class="fieldset-con">-->
+					<!--<legend>滑动块的层级低于导航条层级，且在当前项有固定块</legend>-->
+				<!--</fieldset>-->
+			<!--</div>-->
+			<!--<div class="nav-shoe-wrap">-->
+				<!--<div class="nav-wrap">-->
+					<!--<div class="mouse-follow-nav">-->
+						<!--<div id="nav_1" class="nav-list-w">-->
+							<!--<ul class="nav-list clearFix">-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">哈哈</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">哈哈哈</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">嘿嘿嘿嘿</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">啦啦啦啦</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">吼吼吼</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">呵呵</a>-->
+								<!--</li>-->
+							<!--</ul>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<br />-->
+			<!--<br />-->
+			<!--<br />-->
+			<!--<div class="fieldset-w">-->
+				<!--<fieldset class="fieldset-con">-->
+					<!--<legend>滑动块的层级高于导航条层级（默认）</legend>-->
+				<!--</fieldset>-->
+			<!--</div>-->
+			<!--<div class="nav-shoe-wrap">-->
+				<!--<div class="nav-wrap">-->
+					<!--<div class="mouse-follow-nav">-->
+						<!--<div id="nav_2" class="nav-list-w">-->
+							<!--<ul class="nav-list clearFix">-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">哈哈</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">哈哈哈</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">嘿嘿嘿嘿</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">啦啦啦啦</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">吼吼吼</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">呵呵</a>-->
+								<!--</li>-->
+							<!--</ul>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<br />-->
+			<!--<br />-->
+			<!--<br />-->
+			<!--<div class="nav-shoe-wrap">-->
+				<!--<div class="nav-wrap">-->
+					<!--<div class="mouse-follow-nav">-->
+						<!--<div id="nav_3" class="nav-list-w">-->
+							<!--<ul class="nav-list clearFix">-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">haha</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">hahaha</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">heiheiheihei</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">lalalala</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">houhouhou</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">hehe</a>-->
+								<!--</li>-->
+							<!--</ul>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<br />-->
+			<!--<br />-->
+			<!--<br />-->
+			<!--<div class="fieldset-w">-->
+				<!--<fieldset class="fieldset-con">-->
+					<!--<legend>click事件触发滑动块（默认mouseenter触发）</legend>-->
+				<!--</fieldset>-->
+			<!--</div>-->
+			<!--<div class="nav-shoe-wrap">-->
+				<!--<div class="nav-wrap">-->
+					<!--<div class="mouse-follow-nav">-->
+						<!--<div id="nav_4" class="nav-list-w">-->
+							<!--<ul class="nav-list clearFix">-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">haha</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">hahaha</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">heiheiheihei</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">lalalala</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">houhouhou</a>-->
+								<!--</li>-->
+								<!--<li class="nav-item">-->
+									<!--<a href="javascript:;">hehe</a>-->
+								<!--</li>-->
+							<!--</ul>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<br />-->
+			<!--<br />-->
+			<!--<br />-->
+		</div>
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script src="js/jquery.SlidingBlock.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function () {
+				$('#nav_0').SlidingBlock();
+				$('#nav_1').SlidingBlock({
+					cur_idx: 2,
+					cur_class: 'current',
+					cur_show:true,
+					slider_btm:'-10%',
+					slider_h:'120%',
+					before_show:false,
+					slider_class:'sliding-block-1'
+				});
+				$('#nav_2').SlidingBlock({
+					cur_idx: 0,
+					cur_class: 'current',
+					cur_show:true,
+					slider_btm:'-10%',
+					slider_h:'120%'
+				});
+				$('#nav_3').SlidingBlock({
+					slider_btm:'-20%',
+					slider_h:'140%',
+					before_show:true
+				});
+				$('#nav_4').SlidingBlock({
+					slider_btm:'-20%',
+					slider_h:'140%',
+					cur_show:true,
+					before_show:false,
+					event_type:'click',
+					delay_tm: 0
+				});
+			});
+		</script>
+	</body>
+</html>

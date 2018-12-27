@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .tab{width:100%;height:100%;}
+        .tab-menu{height:42px;width:100%;background: rgba(170,255,245,0.5);}
+        .tab-menu ul{list-style:none;}
+        .tab-menu li{
+            display:block;width:100px;float:left;border:1px solid #ddd;padding: 10px 0;
+            text-align: center;
+            border-bottom: none;
+        }
+        .tab-box div{width:100%;display:none;}
+        /* 让第一个框显示出来 */
+        .tab-box div:first-Child{display:block;}
+        /* 改变选项卡选中时候的样式 */
+        .change{background:#fff;}
+        #btnFooter{
+            width: 100%;
+            height: 50px;
+            position: fixed;
+            bottom:0;
+            display: flex;
+            justify-content: flex-end;
+
+        }
+    </style>
+</head>
+<body scroll="no">
+子传向父的内容： <input id="txt0" type="text" name="txt0"><br />
+<button onclick="setFather()">点击</button>
+</body>
+<script src="ztree/js/jquery-1.4.4.min.js"></script>
+
+<script type="text/javascript">
+
+    //设置父窗口的值
+    function setFather() {
+        if (navigator.userAgent.indexOf("Chrome") > 0) {
+//获取元素之前必须用window.opener.
+            window.opener.document.getElementsByName("txt10")[0].value = document.getElementById("txt0").value ;
+            //获取父，中的对象
+            var mxwreport = window.opener.$("#ss").data("mxwreport");
+
+        }else{
+            window.dialogArguments.document.getElementsByName("txt10")[0].value = document.getElementById("txt0").value ;
+        }
+
+    }
+
+</script>
+
+</html>
